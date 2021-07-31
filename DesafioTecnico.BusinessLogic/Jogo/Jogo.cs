@@ -16,29 +16,37 @@ namespace DesafioTecnico.JogoGourmet.Logic
             this.context = context ?? throw new System.ArgumentNullException(nameof(context));
         }
 
-        private void insereNovoPrato(Pergunta perguntas, Pergunta noPai, string ultimaResposta)
+        private (string descricao, string caracteristica) perguntaDadosNovoPrato(string respostaFinal)
         {
-            string novoPrato = "";
-            while (string.IsNullOrEmpty(novoPrato))
+            var descricaoNovoPrato = "";
+            while (string.IsNullOrEmpty(descricaoNovoPrato))
             {
                 Console.WriteLine(MensagensJogo.PerguntaPratoNovo);
-                novoPrato = Console.ReadLine();
+                descricaoNovoPrato = Console.ReadLine();
             }
 
-            Console.WriteLine(novoPrato + " é ______ mas " + perguntas.RespostaFinal + " não.");
+            var caracteristicaNovoPrato = "";
+            while (string.IsNullOrEmpty(caracteristicaNovoPrato))
+            {
+                Console.WriteLine(descricaoNovoPrato + " é ______ mas " + respostaFinal + " não.");
+                caracteristicaNovoPrato = Console.ReadLine();
+            }
 
-            var adjetivoNovaComida = Console.ReadLine();
+            return (descricaoNovoPrato, caracteristicaNovoPrato);
+        }
 
+        public void insereNovoPrato(string ultimaRespostaConsultada, Pergunta noPai, string ultimaResposta, string descricaoNovoPrato, string caracteristicaNovoPrato)
+        {
             Pergunta novoNo = new Pergunta
             {
-                Descricao = adjetivoNovaComida,
+                Descricao = caracteristicaNovoPrato,
                 ProximaNao = new Pergunta
                 {
-                    RespostaFinal = perguntas.RespostaFinal,
+                    RespostaFinal = ultimaRespostaConsultada,
                 },
                 ProximaSim = new Pergunta
                 {
-                    RespostaFinal = novoPrato
+                    RespostaFinal = descricaoNovoPrato
                 }
             };
             if (ultimaResposta.Equals(RespostasUsuario.Sim))
@@ -47,7 +55,7 @@ namespace DesafioTecnico.JogoGourmet.Logic
                 noPai.ProximaNao = novoNo;
         }
 
-        private (bool, Pergunta, Pergunta, string) executaJogo(Pergunta perguntas)
+        private (bool, Pergunta, string, string) executaJogo(Pergunta perguntas)
         {
             string respostaUsuario, ultimaResposta = RespostasUsuario.Nao;
 
@@ -71,9 +79,9 @@ namespace DesafioTecnico.JogoGourmet.Logic
             }
 
             Console.WriteLine("É " + perguntas.RespostaFinal + "?");
-
             respostaUsuario = Console.ReadLine();
-            return (respostaUsuario.ToUpper().Equals(RespostasUsuario.Sim), noPai, perguntas, ultimaResposta);
+
+            return (respostaUsuario.ToUpper().Equals(RespostasUsuario.Sim), noPai, perguntas.RespostaFinal, ultimaResposta);
         }
 
         public void Iniciar()
@@ -82,13 +90,14 @@ namespace DesafioTecnico.JogoGourmet.Logic
 
             Console.WriteLine(MensagensJogo.MensagemInicio);
 
-            var (acertou, noPai, ultimaPergunta, ultimaResposta) = executaJogo(perguntas);
+            var (acertou, noPai, ultimaRespostaConsultada, ultimaRespostaUsuario) = executaJogo(perguntas);
 
             if (acertou)
                 Console.WriteLine(MensagensJogo.AcertouPrato);
             else
             {
-                insereNovoPrato(ultimaPergunta, noPai, ultimaResposta);
+                var (descricaoNovoPrato, caracteristicaNovoPrato) = perguntaDadosNovoPrato(ultimaRespostaConsultada);
+                insereNovoPrato(ultimaRespostaConsultada, noPai, ultimaRespostaUsuario, descricaoNovoPrato, caracteristicaNovoPrato);
                 Console.WriteLine();
                 Iniciar();
             }

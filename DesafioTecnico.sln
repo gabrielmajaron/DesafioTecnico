@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioTecnico", "DesafioTecnico\DesafioTecnico.csproj", "{D62B49F4-A0AC-4087-93E9-5E2BA6FD4B5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.Abstractions", "DesafioTecnico.Abstractions\DesafioTecnico.Abstractions.csproj", "{76E03F53-6C41-4920-8F05-7DE5A3077D22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioTecnico.Abstractions", "DesafioTecnico.Abstractions\DesafioTecnico.Abstractions.csproj", "{76E03F53-6C41-4920-8F05-7DE5A3077D22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.BusinessLogic", "DesafioTecnico.BusinessLogic\DesafioTecnico.BusinessLogic.csproj", "{B43D60F1-727D-4876-9A93-4A9041CB34D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioTecnico.BusinessLogic", "DesafioTecnico.BusinessLogic\DesafioTecnico.BusinessLogic.csproj", "{B43D60F1-727D-4876-9A93-4A9041CB34D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.DataAccess", "DesafioTecnico.DataAccess\DesafioTecnico.DataAccess.csproj", "{A313DC30-2FDD-4440-98A8-3F6A7D5C1537}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioTecnico.DataAccess", "DesafioTecnico.DataAccess\DesafioTecnico.DataAccess.csproj", "{A313DC30-2FDD-4440-98A8-3F6A7D5C1537}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.UnitTest", "DesafioTecnico.UnitTest\DesafioTecnico.UnitTest.csproj", "{B9A67819-B6D6-4D90-968E-C704D1BC873B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioTecnico.Tests", "DesafioTecnico.UnitTest\DesafioTecnico.Tests.csproj", "{B9A67819-B6D6-4D90-968E-C704D1BC873B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
