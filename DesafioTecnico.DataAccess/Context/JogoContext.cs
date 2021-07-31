@@ -11,31 +11,15 @@
 
             Perguntas = new Pergunta
             {
-                Descricao = "É doce?",
-                ProximaNao = new Pergunta
-                {
-                    Descricao = "É uma massa?",
-                    ProximaSim = new Pergunta
-                    {
-                        RespostaFinal = "Lasanha"
-                    },
-                    ProximaNao = new Pergunta
-                    {
-                        RespostaFinal = "Pipoca salgada"
-                    }
-                },
+                Descricao = "massa",
                 ProximaSim = new Pergunta
                 {
-                    Descricao = "É de amendoim?",
-                    ProximaSim = new Pergunta
-                    {
-                        RespostaFinal = "Paçoca"
-                    },
-                    ProximaNao = new Pergunta
-                    {
-                        RespostaFinal = "Pipoca doce"
-                    }
-                }
+                    RespostaFinal = "Lasanha"
+                },
+                ProximaNao = new Pergunta
+                {
+                    RespostaFinal = "Bolo de Chocolate"
+                }               
             };
         }
     }

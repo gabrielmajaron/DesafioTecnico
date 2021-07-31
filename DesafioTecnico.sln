@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.BusinessLogi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.DataAccess", "DesafioTecnico.DataAccess\DesafioTecnico.DataAccess.csproj", "{A313DC30-2FDD-4440-98A8-3F6A7D5C1537}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnico.UnitTest", "DesafioTecnico.UnitTest\DesafioTecnico.UnitTest.csproj", "{B9A67819-B6D6-4D90-968E-C704D1BC873B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A313DC30-2FDD-4440-98A8-3F6A7D5C1537}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A313DC30-2FDD-4440-98A8-3F6A7D5C1537}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A313DC30-2FDD-4440-98A8-3F6A7D5C1537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A67819-B6D6-4D90-968E-C704D1BC873B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A67819-B6D6-4D90-968E-C704D1BC873B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A67819-B6D6-4D90-968E-C704D1BC873B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A67819-B6D6-4D90-968E-C704D1BC873B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

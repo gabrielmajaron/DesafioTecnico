@@ -2,6 +2,7 @@
 
 namespace DesafioTecnico.JogoGourmet.Logic
 {
+    using DesafioTecnico.BusinessLogic.Constantes;
     using DesafioTecnico.DataAccess.Context;
     using DesafioTecnico.JogoGourmet.Abstraction;
     using DesafioTecnico.JogoGourmet.Models;
@@ -15,12 +16,12 @@ namespace DesafioTecnico.JogoGourmet.Logic
             this.context = context ?? throw new System.ArgumentNullException(nameof(context));
         }
 
-        private void insereNovoPrato(Pergunta perguntas, Pergunta noPai)
+        private void insereNovoPrato(Pergunta perguntas, Pergunta noPai, string ultimaResposta)
         {
             string novoPrato = "";
             while (string.IsNullOrEmpty(novoPrato))
             {
-                Console.WriteLine("O que é então?");
+                Console.WriteLine(MensagensJogo.PerguntaPratoNovo);
                 novoPrato = Console.ReadLine();
             }
 
@@ -30,7 +31,7 @@ namespace DesafioTecnico.JogoGourmet.Logic
 
             Pergunta novoNo = new Pergunta
             {
-                Descricao = "É " + adjetivoNovaComida + "?",
+                Descricao = adjetivoNovaComida,
                 ProximaNao = new Pergunta
                 {
                     RespostaFinal = perguntas.RespostaFinal,
@@ -40,46 +41,54 @@ namespace DesafioTecnico.JogoGourmet.Logic
                     RespostaFinal = novoPrato
                 }
             };
-
-            noPai.ProximaNao = novoNo;
+            if (ultimaResposta.Equals(RespostasUsuario.Sim))
+                noPai.ProximaSim = novoNo;
+            else
+                noPai.ProximaNao = novoNo;
         }
 
-        private (bool, Pergunta, Pergunta) executaJogo(Pergunta perguntas)
+        private (bool, Pergunta, Pergunta, string) executaJogo(Pergunta perguntas)
         {
-            string respostaUsuario;
+            string respostaUsuario, ultimaResposta = RespostasUsuario.Nao;
 
             var noPai = perguntas;
             while (string.IsNullOrEmpty(perguntas.RespostaFinal))
             {
-                Console.WriteLine(perguntas.Descricao);
+                Console.WriteLine(MensagensJogo.PerguntaPadrao + perguntas.Descricao + " (S/N)?");
                 respostaUsuario = Console.ReadLine();
 
                 noPai = perguntas;
-                if (respostaUsuario.ToUpper().Equals("S"))
+                if (respostaUsuario.ToUpper().Equals(RespostasUsuario.Sim))
+                {
                     perguntas = perguntas.ProximaSim;
+                    ultimaResposta = RespostasUsuario.Sim;
+                }                    
                 else
+                {
                     perguntas = perguntas.ProximaNao;
+                    ultimaResposta = RespostasUsuario.Nao;
+                }
             }
 
             Console.WriteLine("É " + perguntas.RespostaFinal + "?");
 
             respostaUsuario = Console.ReadLine();
-            return (respostaUsuario.ToUpper().Equals("S"), noPai, perguntas);
+            return (respostaUsuario.ToUpper().Equals(RespostasUsuario.Sim), noPai, perguntas, ultimaResposta);
         }
 
         public void Iniciar()
         {
             var perguntas = context.Perguntas;
 
-            Console.WriteLine("Pense no seu prato favorito");
+            Console.WriteLine(MensagensJogo.MensagemInicio);
 
-            var (acertou, noPai, ultimaPergunta) = executaJogo(perguntas);
+            var (acertou, noPai, ultimaPergunta, ultimaResposta) = executaJogo(perguntas);
 
             if (acertou)
-                Console.WriteLine("Acertei!");
+                Console.WriteLine(MensagensJogo.AcertouPrato);
             else
             {
-                insereNovoPrato(ultimaPergunta, noPai);
+                insereNovoPrato(ultimaPergunta, noPai, ultimaResposta);
                 Console.WriteLine();
                 Iniciar();
             }
