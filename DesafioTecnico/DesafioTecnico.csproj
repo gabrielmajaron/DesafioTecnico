@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DesafioTecnico.Abstractions\DesafioTecnico.Abstractions.csproj" />
+    <ProjectReference Include="..\DesafioTecnico.BusinessLogic\DesafioTecnico.BusinessLogic.csproj" />
+    <ProjectReference Include="..\DesafioTecnico.DataAccess\DesafioTecnico.DataAccess.csproj" />
+  </ItemGroup>
+
+
+</Project>
