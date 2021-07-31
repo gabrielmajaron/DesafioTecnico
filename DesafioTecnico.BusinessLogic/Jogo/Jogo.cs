@@ -44,7 +44,7 @@ namespace DesafioTecnico.JogoGourmet.Logic
             noPai.ProximaNao = novoNo;
         }
 
-        private (bool, Pergunta) executaJogo(Pergunta perguntas)
+        private (bool, Pergunta, Pergunta) executaJogo(Pergunta perguntas)
         {
             string respostaUsuario;
 
@@ -64,7 +64,7 @@ namespace DesafioTecnico.JogoGourmet.Logic
             Console.WriteLine("É " + perguntas.RespostaFinal + "?");
 
             respostaUsuario = Console.ReadLine();
-            return (respostaUsuario.ToUpper().Equals("S"), noPai);
+            return (respostaUsuario.ToUpper().Equals("S"), noPai, perguntas);
         }
 
         public void Iniciar()
@@ -73,13 +73,13 @@ namespace DesafioTecnico.JogoGourmet.Logic
 
             Console.WriteLine("Pense no seu prato favorito");
 
-            var (acertou, noPai) = executaJogo(perguntas);
+            var (acertou, noPai, ultimaPergunta) = executaJogo(perguntas);
 
             if (acertou)
                 Console.WriteLine("Acertei!");
             else
             {
-                insereNovoPrato(perguntas, noPai);
+                insereNovoPrato(ultimaPergunta, noPai);
                 Console.WriteLine();
                 Iniciar();
             }
