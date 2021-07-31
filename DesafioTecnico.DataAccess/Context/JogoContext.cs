@@ -23,24 +23,6 @@
                     {
                         RespostaFinal = "Pipoca salgada"
                     }
-
-                   /* Descricao = "É uma massa?",
-                    ProximaSim = new Pergunta
-                    {
-                        RespostaFinal = "Lasanha"
-                    },
-                    ProximaNao = new Pergunta
-                    {
-                        Descricao = "É NOVO?", 
-                        ProximaSim = new Pergunta
-                        {
-                            RespostaFinal = "NOVA COMIDA"
-                        },
-                        ProximaNao = new Pergunta
-                        {
-                            RespostaFinal = "Pipoca salgada"
-                        }
-                    }*/
                 },
                 ProximaSim = new Pergunta
                 {
